@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mapem</title>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/d3.geo.tile.v0.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src="http://d3js.org/colorbrewer.v1.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/city_main.css') }}"/>
+  </head>
+  <body>
+    <h1 class='city_title'>{{city.display_name}}</h1>
+
+    
+    <div id="viz" style="width:100%;">
+      
+    </div>
+
+
+    <div id="controls">
+      <a style="float:left;position:absolute;left:0px;top:0px;" href="/main"><img title="Main Map" src="/static/assets/images/backtomap.png"></img></a>
+      <div style="position:relative;display:inline-block;margin:auto;clear:both;">
+        <img title="Tweets" src="/static/assets/images/tw_icon.png" onclick="setviz('tweets');"></img>
+        <img title="Links" src="/static/assets/images/link_icon.png" onclick="setviz('links');"></img>
+        <img title="Over Time" src="/static/assets/images/time_icon.png" onclick="setviz('time');"></img>
+        <img title="Language" src="/static/assets/images/lang_icon.png" onclick="setviz('top_words');"></img>
+        <img title="Census Data" src="/static/assets/images/census_icon.png" onclick="setviz('census');"></img>
+      </div>
+      <a id="notebookbutton" style="float:right;" href="/scratchpad"><img title="Notebook" src="/static/assets/images/notebook.png"></img></a>
+    </div>
+    
+    <script>
+      var centerlat = {{city.centerlat}};
+      var centerlng = {{city.centerlng}};
+      var citymapzoom = {{city.zoom}};
+      var pathbase = "/static/data/{{city.name}}/";
+      var wordbase = "/wordprobs/{{city.name}}/";
+      var cityname = "{{city.name}}";
+    </script>
+    
+    <script src="/static/js/city_main.js"></script>
+  
+    <script src="/static/js/city_tops.js"></script>
+  
+  </body>
+</html>
